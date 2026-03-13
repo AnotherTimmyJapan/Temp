@@ -22,15 +22,14 @@ jobs:
         run: |
           chmod +x ./N64Recomp
           chmod +x ./RSPRecomp
-
       - name: Run Recompiler
-        # 出力先フォルダを事前に作成し、パスを通します
+        # 引数として TOMLファイル を指定します
         run: |
           mkdir -p output_src
-          ./N64Recomp baserom.z64 --outdir ./output_src
+          ./N64Recomp sm64_recomp.toml
 
-      - name: Upload Generated Source
+      - name: Upload Source
         uses: 'actions/upload-artifact@v4'
         with:
-          name: Recompiled-Source
-          path: ./output_src/
+          name: SM64-Recompiled-Source
+          path: output_src/
