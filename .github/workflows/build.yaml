@@ -22,11 +22,15 @@ jobs:
         run: |
           chmod +x ./N64Recomp
           chmod +x ./RSPRecomp
-      - name: Run Recompiler
-        # 引数として TOMLファイル を指定します
+
+      - name: Run Recompiler with Debug
         run: |
+          ls -lh  # ファイルがちゃんと存在するかサイズを確認
+          file ./N64Recomp  # バイナリのアーキテクチャ(Mach-O arm64等)を確認
           mkdir -p output_src
+          # 冗長な出力を期待して実行
           ./N64Recomp sm64_recomp.toml
+
 
       - name: Upload Source
         uses: 'actions/upload-artifact@v4'
