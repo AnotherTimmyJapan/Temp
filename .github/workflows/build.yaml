@@ -27,7 +27,7 @@ jobs:
         # 出力先フォルダを事前に作成し、パスを通します
         run: |
           mkdir -p output_src
-          ./N64Recomp baserom.z64 . --outdir ./output_src
+          ./N64Recomp baserom.z64 --outdir ./output_src
 
       - name: Upload Generated Source
         uses: 'actions/upload-artifact@v4'
