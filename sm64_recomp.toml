@@ -1,9 +1,21 @@
-# N64Recomp用 設定ファイル
-input_path = "baserom.z64"           # アップロードしたROMのパス
-output_path = "output_src"           # C++ソースを吐き出す場所
-elf_path = "sm64.jp.elf"             # 今見つけたお宝ファイル
-description = "Super Mario 64 JP Recompiled"
+# 基本設定
+input_path = "baserom.z64"
+output_path = "output_src"
+elf_path = "sm64.jp.elf"
 
+# マリオ64 JPのメタデータ設定
+[metadata]
+internal_name = "SUPER MARIO 64"
+description = "SM64 Static Recompile JP"
+game_id = "NSMJ" # 日本版のID
+
+# セグフォ回避のための重要設定
 [recompiler]
-# ここに特定の関数をスキップするなどの設定を書きますが、
-# 最初は最小構成で動かしてみるのが吉です。
+# N64Recompは、ELF内の特定のセクション名を指定しないと死ぬことがあります
+# SM64の標準的なセクション名（.text等）を明示的に指定
+code_section_name = ".text" 
+
+# スタックやヒープの設定（ツールが期待する標準値）
+[settings]
+stack_size = 0x100000
+heap_size = 0x1000000
