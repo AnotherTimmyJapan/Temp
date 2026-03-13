@@ -16,7 +16,7 @@ jobs:
 
       - name: Download Base ROM
         run: |
-          curl -L "https://drive.google.com/uc?export=download&id=1li77opFkdX7Iv5H6sKidoDIkOd5cLghM" > baserom.z64
+          curl -L "https://drive.google.com/uc?export=download&id=1syMLEf_VHhGqM4UCL02Igera1zOjQiky" > baserom.z64
 
       - name: Setup Binary Permissions
         run: |
