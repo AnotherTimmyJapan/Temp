@@ -1,0 +1,9 @@
+# N64Recomp用 設定ファイル
+input_path = "baserom.z64"           # アップロードしたROMのパス
+output_path = "output_src"           # C++ソースを吐き出す場所
+elf_path = "sm64.jp.elf"             # 今見つけたお宝ファイル
+description = "Super Mario 64 JP Recompiled"
+
+[recompiler]
+# ここに特定の関数をスキップするなどの設定を書きますが、
+# 最初は最小構成で動かしてみるのが吉です。
