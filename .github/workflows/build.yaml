@@ -1,0 +1,36 @@
+name: N64 Static Recompile ROM
+
+on:
+  workflow_dispatch: # iPhoneから手動実行用
+
+jobs:
+  recompile:
+    runs-on: macos-14 # 指定のmacos-14 arm環境
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout:v4
+        with:
+          submodules: recursive
+
+      - name: Download Base ROM
+        # 指定されたGoogle DriveのリンクからROMを取得
+        run: |
+          curl -L "https://drive.google.com/uc?export=download&id=1li77opFkdX7Iv5H6sKidoDIkOd5cLghM" > baserom.z64
+
+      - name: Setup Binary Permissions
+        # ルートに置かれたバイナリを実行可能にする
+        run: chmod +x ./N64Recomp ./RSPRecomp
+
+      - name: Run Recompiler
+        # ROMを読み込んで再コンパイルを実行
+        # ※出力フォルダや引数はプロジェクトの構成に合わせて適宜調整してください
+        run: |
+          ./N64Recomp baserom.z64 . --outdir ./output_src
+
+      - name: Upload Generated Source
+        # 生成されたC++ソースコードをArtifactとして保存
+        uses: actions/upload-artifact@v4
+        with:
+          name: Recompiled-Source
+          path: ./output_src/
